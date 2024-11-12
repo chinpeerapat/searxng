@@ -7,21 +7,21 @@ general:
   instance_name: "SearXNG"
 
 search:
-  safe_search: 2
+  safe_search: 0
   autocomplete: 'duckduckgo'
 
 server:
   # Is overwritten by ${SEARXNG_SECRET}
   secret_key: "ultrasecretkey"
-  limiter: true
-  image_proxy: true
+  limiter: false
+  image_proxy: false
   # public URL of the instance, to ensure correct inbound links. Is overwritten
   # by ${SEARXNG_URL}.
   # base_url: http://example.com/location
 
-redis:
+# redis:
   # URL to connect redis database. Is overwritten by ${SEARXNG_REDIS_URL}.
-  url: unix:///usr/local/searxng-redis/run/redis.sock?db=0
+  # url: unix:///usr/local/searxng-redis/run/redis.sock?db=0
 
 ui:
   static_use_hash: true
@@ -54,7 +54,65 @@ enabled_plugins:
 #     - '(.*\.)?wikipedia.org$'
 
 engines:
+  - name: google
+    disabled: false
+    # If you need to use API key-based Google Custom Search, add:
+    # api_key: "YOUR_GOOGLE_API_KEY"
+    # cx: "YOUR_CUSTOM_SEARCH_ENGINE_ID"
 
+  - name: bing
+    disabled: false
+    # To use Bing Search API, add your API key:
+    # api_key: "YOUR_BING_API_KEY"
+
+  - name: duckduckgo
+    disabled: false
+
+  - name: wikipedia
+    disabled: false
+    language: all  # You can specify language codes like 'en' for English
+
+  - name: yahoo
+    disabled: false
+
+  - name: qwant
+    disabled: false
+
+  - name: startpage
+    disabled: false
+    # startpage requires a country code; "us" is default for United States
+    country: "us"
+
+  - name: brave
+    disabled: false
+    # To use Brave Search API, add:
+    # api_key: "YOUR_BRAVE_API_KEY"
+
+  - name: reddit
+    disabled: false
+    safesearch: true  # Set to false if you want less filtering of content
+
+  - name: yandex
+    disabled: false
+    # Set up Yandex language if desired
+    language: "en"  # Or choose other language codes like 'ru' for Russian
+
+  - name: searx
+    disabled: false
+    # You can use other public instances if needed by adding a URL
+    # base_url: "https://another-searx-instance.com/"
+
+  - name: genius
+    disabled: false
+    categories: music
+
+  - name: archive.org
+    disabled: false
+    categories: files, general
+
+  - name: github
+    disabled: false
+    categories: code
 #   - name: fdroid
 #     disabled: false
 #
