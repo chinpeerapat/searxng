@@ -50,7 +50,7 @@ RUN apk add --no-cache -t build-dependencies \
 COPY --chown=searxng:searxng dockerfiles ./dockerfiles
 COPY --chown=searxng:searxng searx ./searx
 
-COPY --chown=searxng:searxng searx/settings.yml /etc/searxng/settings.yml
+COPY --chown=searxng:searxng utils/templates/etc/searxng/settings.yml /etc/searxng/settings.yml
 COPY --chown=searxng:searxng dockerfiles/uwsgi.ini /etc/searxng/uwsgi.ini
 
 ARG TIMESTAMP_SETTINGS=0
